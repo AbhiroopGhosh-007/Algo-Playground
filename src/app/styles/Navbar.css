@@ -1,0 +1,84 @@
+/* NAVBAR WRAPPER */
+.navbar {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #13172e;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(5, 7, 20, 0.75);
+}
+
+/* LOGO SECTION */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-shadow: 0px 0px 10px rgba(106, 90, 249, 0.7);;
+}
+
+.navbar-logo-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #6a5af9, #4dc3ff);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  text-shadow: 0px 0px 10px rgba(106, 90, 249, 0.7);;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  transition: 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem 1rem;
+}
+
+.nav-links a:hover {
+  color: #6a5af9;
+  text-shadow: 0px 0px 10px rgba(106, 90, 249, 0.7);
+}
+
+/* ACTIVE LINK (optional) */
+.active-link {
+  color: #6a5af9 !important;
+  font-weight: 800;
+}
+
+/* CTA BUTTON (right side) */
+.nav-cta {
+  padding: 2rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: white;
+  background: linear-gradient(to right, #6a5af9, #4dc3ff);
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.nav-cta:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+/* RESPONSIVE MENU */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
