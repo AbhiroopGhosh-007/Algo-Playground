@@ -1,3 +1,6 @@
+import { linearSearch } from "./linear";
+import { binarySearch } from "./binary";
+
 export const SEARCH_ALGORITHMS = {
   linear: {
     name: "Linear Search",
@@ -13,13 +16,24 @@ export const SEARCH_ALGORITHMS = {
       "  }",
       "  return -1;",
       "}"
-    ]
+    ],
+
+    async execute({ array, target, speed, onIndex, onFound }) {
+      const generator = linearSearch(array, target);
+
+      for (const step of generator) {
+        if (step.currentIndex !== undefined) onIndex(step.currentIndex);
+        if (step.found) onFound(step.index ?? -1);
+
+        await new Promise((r) => setTimeout(r, 300 - speed * 20));
+      }
+    }
   },
 
   binary: {
     name: "Binary Search",
     description:
-      "Efficiently finds the target by repeatedly dividing the sorted array in half.",
+      "Efficiently finds the target by dividing array in half repeatedly.",
     timeComplexity: "O(log n)",
     spaceComplexity: "O(1)",
     bestUses: ["Sorted arrays", "Large datasets"],
@@ -36,6 +50,17 @@ export const SEARCH_ALGORITHMS = {
       "  }",
       "  return -1;",
       "}"
-    ]
+    ],
+
+    async execute({ array, target, speed, onIndex, onFound }) {
+      const generator = binarySearch(array, target);
+
+      for (const step of generator) {
+        if (step.mid !== undefined) onIndex(step.mid);
+        if (step.found) onFound(step.index ?? -1);
+
+        await new Promise((r) => setTimeout(r, 300 - speed * 20));
+      }
+    }
   }
 };

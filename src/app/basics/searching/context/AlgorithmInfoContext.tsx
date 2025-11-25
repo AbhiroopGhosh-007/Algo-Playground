@@ -4,10 +4,10 @@ import React, { createContext, useContext, useState } from "react";
 const AlgorithmInfoContext = createContext(null);
 
 export const AlgorithmInfoProvider = ({ children }) => {
-  const [description, setDescription] = useState("");
+  const [algorithmInfo, setAlgorithmInfo] = useState("");
 
   return (
-    <AlgorithmInfoContext.Provider value={{ description, setDescription }}>
+    <AlgorithmInfoContext.Provider value={{ algorithmInfo, setAlgorithmInfo }}>
       {children}
     </AlgorithmInfoContext.Provider>
   );

@@ -24,6 +24,9 @@ type SearchContextType = {
 
   selectedAlgorithm: string;
   setSelectedAlgorithm: (algo: string) => void;
+
+  algorithmInfo: AlgorithmInfo | null;
+  setAlgorithmInfo: (info: AlgorithmInfo | null) => void;
 };
 
 const SearchContext = createContext<SearchContextType | null>(null);
@@ -31,40 +34,41 @@ const SearchContext = createContext<SearchContextType | null>(null);
 export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
   const [array, setArray] = useState<number[]>([]);
   const [target, setTarget] = useState<number>(0);
-
   const [animationSpeed, setAnimationSpeed] = useState(5);
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [foundIndex, setFoundIndex] = useState<number | null>(null);
 
   const [isSearching, setIsSearching] = useState(false);
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState("linearSearch");
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState("linear");
 
-  let searchProcess: NodeJS.Timeout | null = null;
+  const [algorithmInfo, setAlgorithmInfo] = useState<AlgorithmInfo | null>(null);
 
   const startSearching = async () => {
     if (isSearching) return;
+
     setIsSearching(true);
 
     const algo = SEARCH_ALGORITHMS[selectedAlgorithm];
 
-    await algo.execute(
+    if (!algo || !algo.execute) {
+      console.error("EXECUTE FUNCTION NOT FOUND FOR:", selectedAlgorithm);
+      setIsSearching(false);
+      return;
+    }
+
+    await algo.execute({
       array,
-      setArray,
-      (idx) => setCurrentIndex(idx[0] ?? null),
-      (found) => setFoundIndex(found[0] ?? null),
-      () => {},
-      () => {},
-      animationSpeed
-    );
+      target,
+      speed: animationSpeed,
+      onIndex: setCurrentIndex,
+      onFound: setFoundIndex
+    });
 
     setIsSearching(false);
   };
 
-  const pauseSearching = () => {
-    setIsSearching(false);
-    if (searchProcess) clearTimeout(searchProcess);
-  };
+  const pauseSearching = () => setIsSearching(false);
 
   const resetSearching = () => {
     setIsSearching(false);
@@ -89,6 +93,8 @@ export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
         foundIndex,
         selectedAlgorithm,
         setSelectedAlgorithm,
+        algorithmInfo,
+        setAlgorithmInfo
       }}
     >
       {children}

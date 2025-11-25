@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import SearchingVisualizer from "./components/searchingVisualizer";
+import SearchingVisualizer from "./components/SearchingVisualizer";
 import { SearchProvider } from "./context/SearchContext";
 import { AlgorithmInfoProvider } from "./context/AlgorithmInfoContext";
 
@@ -10,7 +10,7 @@ export default function SearchingPage() {
     <SearchProvider>
       <AlgorithmInfoProvider>
         <div className="min-h-screen bg-slate-900 text-white">
-          <searchingVisualizer />
+          <SearchingVisualizer />
         </div>
       </AlgorithmInfoProvider>
     </SearchProvider>
