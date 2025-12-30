@@ -1,0 +1,179 @@
+/* ---------- GLOBAL WRAPPER ---------- */
+    /* PAGE BACKGROUND GRADIENT */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+
+  /* Purple → Dark Blue → Sky Blue Gradient */
+  background: linear-gradient( #0b0b4a, #073344);
+  background-attachment: fixed;
+}
+
+/* Center heading */
+.visualizer-heading {
+  text-align: center;
+  font-size: 2.2rem;
+  color: white;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Grid container must NOT inherit bg */
+.grid-container {
+  background: transparent;
+  display: grid;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Grid cells */
+.grid-cell {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ddd;
+  background-color: white; /* ensures gradient does NOT affect cells */
+}
+
+/* Buttons styling */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+button{
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+}
+.options{
+  padding: 14px 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+  color: white;
+}
+.option:hover{
+  background-color: #083071;
+  transform: scale(1.05);
+}
+.clear  {
+  padding: 10px 8px;
+  border: none;
+  border-radius: 6px;
+  background-color: #cd2525;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #eee;
+  transform: scale(1.05);
+  color: red;
+}
+
+.visualizer-container {
+  padding: 20px;
+  animation: fadeIn 0.4s ease-in-out;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #222;
+  text-shadow: 1px 1px 2px #e6e6e6;
+}
+
+/* ---------- GRID STYLES ---------- */
+.grid-container {
+  display: inline-block;
+  border: 2px solid #d5d5d5;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+}
+
+/* ---------- NODE BASIC ---------- */
+.node {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #e0e0e0;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.node:hover {
+  background: #d1e8ff;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+/* ---------- SPECIAL NODE TYPES ---------- */
+.node-start {
+  background: #46d362 !important;
+  border-color: #2ea039 !important;
+  box-shadow: 0 0 8px rgba(70, 211, 98, 0.7);
+}
+
+.node-finish {
+  background: #ff4f4f !important;
+  border-color: #cc3a3a !important;
+  box-shadow: 0 0 8px rgba(255, 79, 79, 0.7);
+}
+
+.node-wall {
+  background: #222 !important;
+  border-color: #111 !important;
+}
+
+/* ---------- VISITED NODE ---------- */
+.node-visited {
+  background: #87cefa !important;
+  animation: visitedAnimation 0.2s forwards;
+}
+
+@keyframes visitedAnimation {
+  from { transform: scale(0.5); background: #bfe7ff; }
+  to { transform: scale(1); background: #87cefa; }
+}
+
+/* ---------- SHORTEST PATH NODE ---------- */
+.node-path {
+  background: gold !important;
+  box-shadow: 0 0 10px gold;
+  animation: pathGlow 0.4s infinite alternate;
+}
+
+@keyframes pathGlow {
+  from { box-shadow: 0 0 6px gold; }
+  to { box-shadow: 0 0 14px gold; }
+}
+
+/* ---------- BUTTONS & CONTROLS ---------- */
+
+/* ---------- PAGE FADE-IN ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- MEDIA QUERIES ---------- */
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+}
