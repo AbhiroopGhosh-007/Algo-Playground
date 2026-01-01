@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import SearchingVisualizer from "./components/SearchingVisualizer";
+import SearchingVisualizer from "./components/searchingVisualizer";
 import { SearchProvider } from "./context/SearchContext";
 import { AlgorithmInfoProvider } from "./context/AlgorithmInfoContext";
 
